@@ -4,13 +4,16 @@
 int main(int argc, char **argv)
 {
     Liste p = creerNombreTresGrand();
-    afficherNombreTresGrand(p);
-
     Liste p2 = creerNombreTresGrand();
+
+    printf("Premier nombre : ");
+    afficherNombreTresGrand(p);
+    printf("Deuxieme nombre : ");
     afficherNombreTresGrand(p2);
 
+    Liste pGrande = compareDeuxNombreTresGrand(p, p2);
     printf("Le nombre le plus grand est : ");
-    afficherNombreTresGrand(compareDeuxNombreTresGrand(p, p2));
+    afficherNombreTresGrand(pGrande);
 
     return 0;
 }

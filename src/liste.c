@@ -65,7 +65,7 @@ void afficherNombreTresGrand(Liste lst)
 {
     while(!estVide(lst))
     {
-        printf("%d ", tete(lst));
+        printf("%d", tete(lst));
         lst = queue(lst);
     }
     printf("\n");
@@ -94,32 +94,36 @@ Liste compareDeuxNombreTresGrand(Liste lst1, Liste lst2)
     Liste cpLst1 = lst1;
     Liste cpLst2 = lst2;
 
-    while(tete(lst1) == 0)
-        lst1 = queue(lst1);
-    while(tete(lst2) == 0)
-        lst2 = queue(lst2);
+    while(tete(cpLst1) == 0)
+        cpLst1 = queue(cpLst1);
+    while(tete(cpLst2) == 0)
+        cpLst2 = queue(cpLst2);
 
-    while(!estVide(lst1) || !estVide(lst2))
+    while(!estVide(cpLst1) && !estVide(cpLst2))
     {
-        if(max == 0 && tete(lst1) != tete(lst2))
+        if(max == 0 && tete(cpLst1) != tete(cpLst2))
         {
-            if(tete(lst1) > tete(lst2))
+            if(tete(cpLst1) > tete(cpLst2))
                 max = 1;
-            else if(tete(lst1) < tete(lst2))
+            else if(tete(cpLst1) < tete(cpLst2))
                 max = 2;
         }
-        lst1 = queue(lst1);
-        lst2 = queue(lst2);
+        cpLst1 = queue(cpLst1);
+        cpLst2 = queue(cpLst2);
     }
-    if(estVide(lst1) && !estVide(lst2))
-        return cpLst2;
-    else if(!estVide(lst1) && estVide(lst2))
-        return cpLst1;
-    else
+
+    if(estVide(cpLst1) && estVide(cpLst2))
     {
         if(max == 1 || max == 0)
-            return cpLst1;
+            return lst1;
         else 
-            return cpLst2;
+            return lst2;
+    }
+    else
+    {
+        if(estVide(cpLst1))
+            return lst2;
+        else
+            return lst1;
     }
 }
