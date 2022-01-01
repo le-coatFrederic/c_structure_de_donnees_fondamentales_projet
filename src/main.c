@@ -1,19 +1,13 @@
 #include "../include/liste.h"
+#include "../include/arbre.h"
 #include <stdio.h>
 
 int main(int argc, char **argv)
 {
-    Liste p = creerNombreTresGrand();
-    Liste p2 = creerNombreTresGrand();
-
-    printf("Premier nombre : ");
-    afficherNombreTresGrand(p);
-    printf("Deuxieme nombre : ");
-    afficherNombreTresGrand(p2);
-
-    Liste pGrande = compareDeuxNombreTresGrand(p, p2);
-    printf("Le nombre le plus grand est : ");
-    afficherNombreTresGrand(pGrande);
-
+    Arbre A = creerArbreTresGrandNombre();
+    if(testArbreAvl(A) == 1)
+        printf("Ceci est un AVL !\n");
+    else
+        printf("Ce n'est pas un AVL !\n");
     return 0;
 }

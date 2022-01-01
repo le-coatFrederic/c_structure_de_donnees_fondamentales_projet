@@ -4,7 +4,7 @@
 
 int tete(Liste lst)
 {
-    if(!estVide(lst)) 
+    if(!estVideListe(lst)) 
         return lst->chiffre;
     else 
         exit(EXIT_FAILURE);
@@ -12,13 +12,13 @@ int tete(Liste lst)
 
 Liste queue(Liste lst)
 {
-    if(!estVide(lst)) 
+    if(!estVideListe(lst)) 
         return lst->suivant;
     else 
         exit(EXIT_FAILURE);
 }
 
-int estVide(Liste lst)
+int estVideListe(Liste lst)
 {
     if(lst == NULL) 
         return 1;
@@ -63,7 +63,7 @@ Liste creerNombreTresGrand()
 
 void afficherNombreTresGrand(Liste lst)
 {
-    while(!estVide(lst))
+    while(!estVideListe(lst))
     {
         printf("%d", tete(lst));
         lst = queue(lst);
@@ -74,7 +74,7 @@ void afficherNombreTresGrand(Liste lst)
 Liste formatageTresGrandNombre(Liste lst)
 {
     Liste cpLst = lst;
-    while(!estVide(cpLst))
+    while(!estVideListe(cpLst))
     {
         if(tete(cpLst) > 9)
         {
@@ -99,7 +99,7 @@ Liste compareDeuxNombreTresGrand(Liste lst1, Liste lst2)
     while(tete(cpLst2) == 0)
         cpLst2 = queue(cpLst2);
 
-    while(!estVide(cpLst1) && !estVide(cpLst2))
+    while(!estVideListe(cpLst1) && !estVideListe(cpLst2))
     {
         if(max == 0 && tete(cpLst1) != tete(cpLst2))
         {
@@ -112,7 +112,7 @@ Liste compareDeuxNombreTresGrand(Liste lst1, Liste lst2)
         cpLst2 = queue(cpLst2);
     }
 
-    if(estVide(cpLst1) && estVide(cpLst2))
+    if(estVideListe(cpLst1) && estVideListe(cpLst2))
     {
         if(max == 1 || max == 0)
             return lst1;
@@ -121,9 +121,50 @@ Liste compareDeuxNombreTresGrand(Liste lst1, Liste lst2)
     }
     else
     {
-        if(estVide(cpLst1))
+        if(estVideListe(cpLst1))
             return lst2;
         else
             return lst1;
+    }
+}
+
+int plusGrandOuEgalQue(Liste lst1, Liste lst2)
+{
+    int max = 0;
+
+    Liste cpLst1 = lst1;
+    Liste cpLst2 = lst2;
+
+    while(tete(cpLst1) == 0)
+        cpLst1 = queue(cpLst1);
+    while(tete(cpLst2) == 0)
+        cpLst2 = queue(cpLst2);
+
+    while(!estVideListe(cpLst1) && !estVideListe(cpLst2))
+    {
+        if(max == 0 && tete(cpLst1) != tete(cpLst2))
+        {
+            if(tete(cpLst1) > tete(cpLst2))
+                max = 1;
+            else if(tete(cpLst1) < tete(cpLst2))
+                max = 2;
+        }
+        cpLst1 = queue(cpLst1);
+        cpLst2 = queue(cpLst2);
+    }
+
+    if(estVideListe(cpLst1) && estVideListe(cpLst2))
+    {
+        if(max == 1 || max == 0)
+            return 1;
+        else 
+            return 0;
+    }
+    else
+    {
+        if(estVideListe(cpLst1))
+            return 0;
+        else
+            return 1;
     }
 }
