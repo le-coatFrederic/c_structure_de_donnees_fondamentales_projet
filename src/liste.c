@@ -41,7 +41,8 @@ Liste creerNombreTresGrand()
     Liste lst , cpLst, cpLst2;
     printf("Quel chiffre ajouter au nombre ? "); // le faire une première fois pour tout initialiser
     scanf("%d", &choix);
-    if(choix < 0) running = 0;
+    if(choix < 0) return NULL;    
+    
     else 
     {
         lst = creerListe(choix, NULL);
@@ -68,7 +69,6 @@ void afficherNombreTresGrand(Liste lst)
         printf("%d", tete(lst));
         lst = queue(lst);
     }
-    printf("\n");
 }
 
 Liste formatageTresGrandNombre(Liste lst)
@@ -128,43 +128,101 @@ Liste compareDeuxNombreTresGrand(Liste lst1, Liste lst2)
     }
 }
 
-int plusGrandOuEgalQue(Liste lst1, Liste lst2)
+int plusGrandQue(Liste lst1, Liste lst2)
 {
     int max = 0;
 
-    Liste cpLst1 = lst1;
-    Liste cpLst2 = lst2;
+    while(tete(lst1) == 0)
+        lst1 = queue(lst1);
+    while(tete(lst2) == 0)
+        lst2 = queue(lst2);
 
-    while(tete(cpLst1) == 0)
-        cpLst1 = queue(cpLst1);
-    while(tete(cpLst2) == 0)
-        cpLst2 = queue(cpLst2);
-
-    while(!estVideListe(cpLst1) && !estVideListe(cpLst2))
+    while(!estVideListe(lst1) && !estVideListe(lst2))
     {
-        if(max == 0 && tete(cpLst1) != tete(cpLst2))
+        if(max == 0 && tete(lst1) != tete(lst2))
         {
-            if(tete(cpLst1) > tete(cpLst2))
+            if(tete(lst1) > tete(lst2))
                 max = 1;
-            else if(tete(cpLst1) < tete(cpLst2))
+            else if(tete(lst1) < tete(lst2))
                 max = 2;
         }
-        cpLst1 = queue(cpLst1);
-        cpLst2 = queue(cpLst2);
+        lst1 = queue(lst1);
+        lst2 = queue(lst2);
     }
 
-    if(estVideListe(cpLst1) && estVideListe(cpLst2))
+    if(estVideListe(lst1) && estVideListe(lst2))
     {
-        if(max == 1 || max == 0)
+        if(max == 1)
             return 1;
         else 
             return 0;
     }
     else
     {
-        if(estVideListe(cpLst1))
+        if(estVideListe(lst1))
             return 0;
         else
             return 1;
+    }
+}
+
+int plusPetitQue(Liste lst1, Liste lst2)
+{
+    int max = 0;
+
+    while(tete(lst1) == 0)
+        lst1 = queue(lst1);
+    while(tete(lst2) == 0)
+        lst2 = queue(lst2);
+
+    while(!estVideListe(lst1) && !estVideListe(lst2))
+    {
+        if(max == 0 && tete(lst1) != tete(lst2))
+        {
+            if(tete(lst1) < tete(lst2))
+                max = 1;
+            else if(tete(lst1) > tete(lst2))
+                max = 2;
+        }
+        lst1 = queue(lst1);
+        lst2 = queue(lst2);
+    }
+
+    if(estVideListe(lst1) && estVideListe(lst2))
+    {
+        if(max == 1)
+            return 1;
+        else 
+            return 0;
+    }
+    else
+    {
+        if(estVideListe(lst1))
+            return 1;
+        else
+            return 0;
+    }
+}
+
+int Egal(Liste lst1, Liste lst2)
+{
+    while(tete(lst1) == 0)
+        lst1 = queue(lst1);
+    while(tete(lst2) == 0)
+        lst2 = queue(lst2);
+
+    while(!estVideListe(lst1) && !estVideListe(lst2))
+    {
+        lst1 = queue(lst1);
+        lst2 = queue(lst2);
+    }
+
+    if(estVideListe(lst1) && estVideListe(lst2))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
     }
 }

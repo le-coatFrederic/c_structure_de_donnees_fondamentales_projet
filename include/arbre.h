@@ -3,7 +3,7 @@
 
 #include "liste.h"
 
-typedef struct Noeud
+typedef struct Noeud //structure d'un noeud
 {
     Liste nombre;
     struct Noeud *gauche;
@@ -12,11 +12,16 @@ typedef struct Noeud
 
 int estVideArbre(Arbre A);
 Liste racine(Arbre A);
-Arbre creerNoeud(Liste valeur, Arbre A);
+Arbre creerNoeud(Liste valeur);
 void affichageArbre(Arbre A);
-void a(Arbre A, int i);
+void affiche(Arbre A, int i);
 Arbre creerArbreTresGrandNombre();
 int hauteur(Arbre A);
 int testArbreAvl(Arbre A);
+Arbre rotationGauche(Arbre A);
+Arbre rotationDroite(Arbre A);
+Arbre doubleRotationDroiteGauche(Arbre A);
+Arbre doubleRotationGaucheDroite(Arbre A);
+Arbre insertionNombreDansAvl(Liste val, Arbre A);
 
 #endif

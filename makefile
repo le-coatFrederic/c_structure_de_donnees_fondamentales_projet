@@ -12,3 +12,6 @@ src/main.o: src/main.c
 
 clean:
 	rm -f $(obj) app
+
+git:
+	git add include/* src/*.c makefile notice.txt

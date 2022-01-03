@@ -15,6 +15,8 @@ Liste creerNombreTresGrand();
 void afficherNombreTresGrand(Liste lst);
 Liste formatageTresGrandNombre(Liste lst);
 Liste compareDeuxNombreTresGrand(Liste lst1, Liste lst2);
-int plusGrandOuEgalQue(Liste lst1, Liste lst2);
+int plusGrandQue(Liste lst1, Liste lst2);
+int plusPetitQue(Liste lst1, Liste lst2);
+int Egal(Liste lst1, Liste lst2);
 
 #endif
